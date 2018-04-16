@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+        <div class="page-header">
+
+            <h3>Confirmation</h3>
+        </div>
+        <p> Are you sure you want to vote for these candidates? </p>
+
+        {% for candidate in candidates%}
+            <p><b>{{candidate.first_name}} {{candidate.last_name}}</b></p>
+            
+        {% endfor %}
+        <div class="btn-group-vertical">
+            <form action="{% url 'submit_vote' election_id %}" method="post">
+            {% csrf_token %}
+                <div class="form-group">
+                    <input class='btn btn-danger' type="submit" value = "Yes" \>
+                    <input type="hidden" formmethod="post" name="candidates" value="{{ candidate_ids }}">
+                </div>
+            </form>
+            <form action="{% url 'vote' election_id %}">
+                <div class="form-group">
+                    <input class='btn btn-info' type="submit" value = "No" \>
+                </div>
+            </form>
+        </div>
+{% endblock %}

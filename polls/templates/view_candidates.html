@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+        <h3>Current Election Results</h3>
+        {% if candidates %}
+            <ul>
+            {% for candidate in candidates %}
+               {{ candidate.first_name }} {{candidate.last_name}}: {{candidate.number_of_votes}} <br>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+{% endblock %}
